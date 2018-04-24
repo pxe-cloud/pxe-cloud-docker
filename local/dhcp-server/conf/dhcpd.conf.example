@@ -1,0 +1,24 @@
+#
+# dhcpd.conf
+#
+
+# Global configuration
+default-lease-time 600;
+max-lease-time 7200;
+option routers 192.168.1.1;
+option subnet-mask 255.255.255.0;
+option broadcast-address 192.168.1.255;
+option domain-name-servers 1.1.1.1, 1.0.0.1;
+option domain-name "lan.";
+authoritative;
+
+# PXE Config
+allow booting;
+allow bootp;
+next-server 192.168.1.5;
+filename "/var/lib/tftpboot/undionly.kpxe";
+
+# Main netmask
+subnet 192.168.1.0 netmask 255.255.255.0 {
+  range 192.168.1.10 192.168.1.50;
+}
