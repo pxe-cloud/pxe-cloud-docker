@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Make sure that Docker isn't installed
-sudo apt-get remove docker docker-engine docker.io -y
+sudo apt remove docker docker-engine docker.io -y
 
 # Install Docker
-sudo apt-get update
-sudo apt-get install \
+sudo apt update
+sudo apt install \
      apt-transport-https \
      ca-certificates \
      curl \
@@ -33,4 +33,5 @@ sudo systemctl start docker
 # Install the required packages to compile iPXE
 sudo apt install git liblzma-dev -y
 
-echo "To start the services, please run 'python3 start.py'"
+# Start the python script
+python3 start.py

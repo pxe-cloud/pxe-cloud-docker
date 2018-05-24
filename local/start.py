@@ -84,21 +84,21 @@ chain {}://{}/boot""".format(self.settings["api"]["protocol"], self.settings["ap
             general_config_file = f.readlines()
 
         for line_num, line in enumerate(console_config_file):
-            if line == "//#define      CONSOLE_FRAMEBUFFER     /* Graphical framebuffer console */\n":
-                console_config_file[line_num] = "#define        CONSOLE_FRAMEBUFFER     /* Graphical framebuffer console */\n"
+            if line == "//#define\tCONSOLE_FRAMEBUFFER\t/* Graphical framebuffer console */\n":
+                console_config_file[line_num] = "#define\tCONSOLE_FRAMEBUFFER\t/* Graphical framebuffer console */\n"
 
-            elif line.startswith("#define KEYBOARD_MAP"):
-                console_config_file[line_num] = "#define KEYBOARD_MAP    {}\n".format(self.settings["ipxe"]["keymap"])
+            elif line.startswith("#define\tKEYBOARD_MAP"):
+                console_config_file[line_num] = "#define\tKEYBOARD_MAP\t{}\n".format(self.settings["ipxe"]["keymap"])
 
         for line_num, line in enumerate(general_config_file):
-            if line == "//#define REBOOT_CMD           /* Reboot command */\n":
-                general_config_file[line_num] = "#define REBOOT_CMD             /* Reboot command */\n"
+            if line == "//#define REBOOT_CMD\t\t/* Reboot command */\n":
+                general_config_file[line_num] = "#define REBOOT_CMD\t\t/* Reboot command */\n"
 
-            elif line == "//#define POWEROFF_CMD         /* Power off command */\n":
-                general_config_file[line_num] = "#define POWEROFF_CMD           /* Power off command */\n"
+            elif line == "//#define POWEROFF_CMD\t\t/* Power off command */\n":
+                general_config_file[line_num] = "#define POWEROFF_CMD\t\t/* Power off command */\n"
 
-            elif line == "//#define CONSOLE_CMD          /* Console command */":
-                general_config_file[line_num] = "#define CONSOLE_CMD            /* Console command */\n"
+            elif line == "//#define CONSOLE_CMD\t\t/* Console command */":
+                general_config_file[line_num] = "#define CONSOLE_CMD\t\t/* Console command */\n"
 
         with open(os.path.join(self.src_path, "config/console.h"), "w") as f:
             f.writelines(console_config_file)
