@@ -8,17 +8,16 @@ max-lease-time 7200;
 option routers 192.168.1.1;
 option subnet-mask 255.255.255.0;
 option broadcast-address 192.168.1.255;
-option domain-name-servers 1.1.1.1, 1.0.0.1;
-option domain-name "lan.";
+option domain-name-servers 8.8.8.8, 8.8.4.4;
 authoritative;
 
 # PXE Config
 allow booting;
 allow bootp;
 next-server 192.168.1.5;
-filename "/var/lib/tftpboot/undionly.kpxe";
+filename "undionly.kpxe";
 
 # Main netmask
 subnet 192.168.1.0 netmask 255.255.255.0 {
-  range 192.168.1.10 192.168.1.50;
+  range 192.168.1.10 192.168.1.25;
 }

@@ -1,0 +1,2 @@
+docker-compose==1.21.0
+PyYAML==3.12

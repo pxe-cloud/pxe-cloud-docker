@@ -1,0 +1,47 @@
+version: '3.2'
+services:
+  dhcp_server:
+    volumes:
+      - type: volume
+        source: dhcp_leases
+        target: /var/lib/dhcp
+        read_only: false
+      - type: bind
+        source: ./dhcp-server/conf
+        target: /etc/dhcpd
+        read_only: true
+    build: ./dhcp-server
+    ports:
+      - target: 67
+        published: 67
+        protocol: tcp
+        mode: host
+      - target: 67
+        published: 67
+        protocol: udp
+        mode: host
+    network_mode: host
+    restart: always
+    depends_on:
+      - pxe_server
+
+  pxe_server:
+    volumes:
+      - type: bind
+        source: ./pxe-server/tftpboot
+        target: /var/tftpboot
+        read_only: true
+    build: ./pxe-server
+    ports:
+      - target: 69
+        published: 69
+        protocol: tcp
+        mode: host
+      - target: 69
+        published: 69
+        protocol: udp
+        mode: host
+    restart: always
+
+volumes:
+  dhcp_leases:
