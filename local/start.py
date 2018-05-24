@@ -179,7 +179,7 @@ def dhcp_setup():
         elif line.startswith("  range"):
             dhcp_config[line_num] = "  range {} {};".format(str(range_start_ip), str(range_end_ip))
 
-    with open(os.path.join(ORIGINAL_EXECUTION_PATH_DIRECTORY, "dhcp-server/conf/dhcpd.conf.example"), "w") as f:
+    with open(os.path.join(ORIGINAL_EXECUTION_PATH_DIRECTORY, "dhcp-server/conf/dhcpd.conf"), "w") as f:
         f.writelines(dhcp_config)
 
 def setup():
