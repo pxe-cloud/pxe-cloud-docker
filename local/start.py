@@ -207,7 +207,7 @@ def setup():
     ipxe.compile_ipxe()
 
     dhcp_input = input("Do you want to configure the DHCP server? [Y/n]")
-    if dhcp_input:
+    if dhcp_input.startswith("y") or dhcp_input.startswith("Y") or dhcp_input == "":
         dhcp_setup()
 
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
