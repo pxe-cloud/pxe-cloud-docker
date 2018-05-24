@@ -120,8 +120,6 @@ def check_ip_in_network(address, network):
 
 # DHCP Configuration
 def dhcp_setup():
-    os.chdir(os.path.dirname(os.path.abspath(__file__)))
-
     gateway_input = input("Which is the gateway address of the network? (ex: 192.168.1.1) ")
     netmask_input = input("Which is the netmask address of the network? (ex: 24) ")
 
@@ -155,7 +153,7 @@ def dhcp_setup():
         print("The address you entered was outside the network!")
         sys.exit(1)
 
-    with open(os.path.abspath("dhcp-server/conf/dhcpd.conf.example")) as f:
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), os.path.abspath("dhcp-server/conf/dhcpd.conf.example")), "r") as f:
         dhcp_config = f.readlines()
 
     for line_num, line in enumerate(dhcp_config):
@@ -180,7 +178,7 @@ def dhcp_setup():
         elif line.startswith("  range"):
             dhcp_config[line_num] = "  range {} {};".format(str(range_start_ip), str(range_end_ip))
 
-    with open(os.path.abspath("dhcp-server/conf/dhcpd.conf"), "w") as f:
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), os.path.abspath("dhcp-server/conf/dhcpd.conf.example")), "w") as f:
         f.writelines(dhcp_config)
 
 def setup():
