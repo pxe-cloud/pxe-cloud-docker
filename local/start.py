@@ -8,7 +8,7 @@ import urllib.request
 from shutil import copyfile
 import ipaddress
 
-ORIGINAL_EXECUTION_PATH_DIRECTORY - os.path.dirname(os.path.abspath(__file__))
+ORIGINAL_EXECUTION_PATH_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
 # Read the settings
 def read_settings(key=None):
