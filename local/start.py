@@ -92,7 +92,7 @@ chain {}://{}/boot""".format(self.settings["api"]["protocol"], self.settings["ap
                 console_config_file[line_num] = "#define\tKEYBOARD_MAP\t{}\n".format(self.settings["ipxe"]["keymap"])
 
         for line_num, line in enumerate(general_config_file):
-            if line == "#undef\tDOWNLOAD_PROTO_HTTPSt\t/* Secure Hypertext Transfer Protocol */\n":
+            if line == "#undef\tDOWNLOAD_PROTO_HTTPS\t/* Secure Hypertext Transfer Protocol */\n":
                 general_config_file[line_num] = "#define\tDOWNLOAD_PROTO_HTTPS\t/* Secure Hypertext Transfer Protocol */\n"
             if line == "//#define REBOOT_CMD\t\t/* Reboot command */\n":
                 general_config_file[line_num] = "#define REBOOT_CMD\t\t/* Reboot command */\n"
