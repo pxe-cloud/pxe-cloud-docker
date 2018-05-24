@@ -8,6 +8,7 @@ import urllib.request
 from shutil import copyfile
 import ipaddress
 
+ORIGINAL_EXECUTION_PATH_DIRECTORY - os.path.dirname(os.path.abspath(__file__))
 
 # Read the settings
 def read_settings(key=None):
@@ -35,7 +36,7 @@ def install_requirements(system_wide=False):
 class iPXE():
     def __init__(self):
         self.settings = read_settings()
-        self.git_repo_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "pxe-server")
+        self.git_repo_path = os.path.join(ORIGINAL_EXECUTION_PATH_DIRECTORY, "pxe-server")
         self.src_path = os.path.join(self.git_repo_path, "ipxe/src")
 
     def clone_repo(self):
@@ -153,7 +154,7 @@ def dhcp_setup():
         print("The address you entered was outside the network!")
         sys.exit(1)
 
-    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "dhcp-server/conf/dhcpd.conf.example"), "r") as f:
+    with open(os.path.join(ORIGINAL_EXECUTION_PATH_DIRECTORY, "dhcp-server/conf/dhcpd.conf.example"), "r") as f:
         dhcp_config = f.readlines()
 
     for line_num, line in enumerate(dhcp_config):
@@ -178,7 +179,7 @@ def dhcp_setup():
         elif line.startswith("  range"):
             dhcp_config[line_num] = "  range {} {};".format(str(range_start_ip), str(range_end_ip))
 
-    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "dhcp-server/conf/dhcpd.conf.example"), "w") as f:
+    with open(os.path.join(ORIGINAL_EXECUTION_PATH_DIRECTORY, "dhcp-server/conf/dhcpd.conf.example"), "w") as f:
         f.writelines(dhcp_config)
 
 def setup():
@@ -208,7 +209,7 @@ def setup():
     if dhcp_input.startswith("y") or dhcp_input.startswith("Y") or dhcp_input == "":
         dhcp_setup()
 
-    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    os.chdir(ORIGINAL_EXECUTION_PATH_DIRECTORY)
     os.system("touch .setup")
 
 
