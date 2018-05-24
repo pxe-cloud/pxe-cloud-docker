@@ -74,7 +74,7 @@ chain {}://{}/boot""".format(self.settings["api"]["protocol"], self.settings["ap
                 sys.exit(1)
 
         else:
-            urllib.request.urlretrieve("https://letsencrypt.org/certs/isrgrootx1.pem.txt", os.path.join(self.src_path, "ca.cer"))
+            urllib.request.urlretrieve("https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem.txt", os.path.join(self.src_path, "ca.cer"))
 
     # TODO
     def modify_compilation_options(self):
