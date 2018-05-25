@@ -76,7 +76,6 @@ chain {}://{}/boot""".format(self.settings["api"]["protocol"], self.settings["ap
         else:
             urllib.request.urlretrieve("https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem.txt", os.path.join(self.src_path, "ca.cer"))
 
-    # TODO
     def modify_compilation_options(self):
         with open(os.path.join(self.src_path, "config/console.h"), "r") as f:
             console_config_file = f.readlines()
@@ -185,6 +184,7 @@ def dhcp_setup():
         f.writelines(dhcp_config)
 
 def setup():
+    os.system("clear")
     install_input = input("Do you want to install the packages to all the users? [y/N]: ")
     if install_input.startswith("y") or install_input.startswith("Y"):
         install_requirements(True)
@@ -196,6 +196,7 @@ def setup():
     ipxe.clone_repo()
     ipxe.generate_chainload_script()
 
+    os.system("clear")
     ca_input = input("Do you want to use a custom CA certificate? (If not, it's going to use the Let's Encrypt one) (if not sure, just hit enter) [y/N]: ")
     if ca_input.startswith("y") or ca_input.startswith("Y"):
         file_input = input("Please, introduce the path of the file: ")
@@ -207,6 +208,7 @@ def setup():
     ipxe.modify_compilation_options()
     ipxe.compile_ipxe()
 
+    os.system("clear")
     dhcp_input = input("Do you want to configure the DHCP server? [Y/n]")
     if dhcp_input.startswith("y") or dhcp_input.startswith("Y") or dhcp_input == "":
         dhcp_setup()

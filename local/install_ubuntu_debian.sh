@@ -34,4 +34,5 @@ sudo systemctl start docker
 sudo apt install git liblzma-dev -y
 
 # Start the python script
+clear
 python3 start.py
