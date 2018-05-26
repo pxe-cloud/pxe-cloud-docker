@@ -93,13 +93,14 @@ chain {}://{}/boot""".format(self.settings["api"]["protocol"], self.settings["ap
         for line_num, line in enumerate(general_config_file):
             if line == "#undef\tDOWNLOAD_PROTO_HTTPS\t/* Secure Hypertext Transfer Protocol */\n":
                 general_config_file[line_num] = "#define\tDOWNLOAD_PROTO_HTTPS\t/* Secure Hypertext Transfer Protocol */\n"
-            if line == "//#define REBOOT_CMD\t\t/* Reboot command */\n":
+
+            elif line == "//#define REBOOT_CMD\t\t/* Reboot command */\n":
                 general_config_file[line_num] = "#define REBOOT_CMD\t\t/* Reboot command */\n"
 
             elif line == "//#define POWEROFF_CMD\t\t/* Power off command */\n":
                 general_config_file[line_num] = "#define POWEROFF_CMD\t\t/* Power off command */\n"
 
-            elif line == "//#define CONSOLE_CMD\t\t/* Console command */":
+            elif line == "//#define CONSOLE_CMD\t\t/* Console command */\n":
                 general_config_file[line_num] = "#define CONSOLE_CMD\t\t/* Console command */\n"
 
         with open(os.path.join(self.src_path, "config/console.h"), "w") as f:
