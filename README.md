@@ -38,3 +38,9 @@ Where `<SERVER IP>` is the IP address of the machine where all the previous code
 ## Questions?
 
 In case you need help or you have a question, just open an issue and we'll be happy to help you! 
+
+## Demo installation  
+  
+[![Demo installation](https://preview.ibb.co/cOsRjd/Captura_de_pantalla_de_2018_06_13_19_30_25.png)](https://www.youtube.com/embed/6BVTzLfp320)  
+  
+  
